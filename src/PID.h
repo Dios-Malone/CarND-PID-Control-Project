@@ -1,5 +1,6 @@
 #ifndef PID_H
 #define PID_H
+#include <iostream>
 
 class PID {
  public:
@@ -17,7 +18,7 @@ class PID {
    * Initialize PID.
    * @param (Kp_, Ki_, Kd_) The initial PID coefficients
    */
-  void Init(double Kp_, double Ki_, double Kd_);
+  void Init(double Kp_, double Ki_, double Kd_, double MaxIn);
 
   /**
    * Update the PID error variables given cross track error.
@@ -38,6 +39,7 @@ class PID {
   double p_error;
   double i_error;
   double d_error;
+  double ITerm;
 
   /**
    * PID Coefficients
@@ -45,6 +47,7 @@ class PID {
   double Kp;
   double Ki;
   double Kd;
+  double Max;
 };
 
 #endif  // PID_H

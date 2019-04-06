@@ -1,6 +1,34 @@
 # CarND-Controls-PID
 Self-Driving Car Engineer Nanodegree Program
 
+## Reflection - Describe the effect each of the P, I, D components had in your implementation
+
+* General: A PD controller can be seen as a spring-damper-model that connects the car with the middle lane of the road.
+ * The Kp term represents the spring trying to pull the vehicle back to the center and Kd represents the damper.
+* Procedure for parameter optimization:
+ * manual tuning
+   * If the car is not able to hold the lane on a steep turn even at low veloctities --> increase Kp until the vehicle becomes too wiggly
+   * If the car is not able to hold the lane on a steep turn at high veloctities --> increase Kd until the vehicle becomes too inert
+   * Since there is no bias, the Ki term was set to zero
+
+### Tuning History
+
+double init_Kp = 0.5;
+double init_Ki = 0;
+double init_Kd = 0; --> will leave track
+  
+double init_Kp = 0.5;
+double init_Ki = 0;
+double init_Kd = 0.5; --> will leave track
+  
+double init_Kp = 0.3;
+double init_Ki = 0.0008;
+double init_Kd = 1.5; --> I-error will grow almost infinitely --> Limit I-Term to avoid "wind up"
+
+double init_Kp = 0.15;
+double init_Ki = 0.0;
+double init_Kd = 3.15; --> Final configuration as a good compromise between stability and efficiency
+
 ---
 
 ## Dependencies
